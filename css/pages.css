@@ -1,0 +1,20 @@
+table {
+    float: right;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(153, 230,255);
+    color: black;
+    top: 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td, tr {
+    border: 1px solid black;
+    padding: 3px;
+}
+
+#content {
+    display: block;
+}
+
