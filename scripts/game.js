@@ -47,12 +47,9 @@ $(document).ready(function() {
   //add popup on "Answer Prompt" button, disable canPlay
   document.getElementById("answerPrompt").addEventListener("click", function() {
     $('#submitanswer').show();
+    $('#answerPrompt').hide();
     canPlay = false;
   });
-
-  /*let currentTime = Math.floor((Date.now() - start) / 1000);
-  console.log(currentTime)*/
-
 
 
   //check answer on Submit button click
@@ -64,17 +61,67 @@ $(document).ready(function() {
     let userAnswer = document.getElementById("useranswer").value;
 
     if(userAnswer.toLowerCase() == answer) {
-      console.log("Correct");
-      
+      correctGuess();
+
+    } else {
+      incorrectGuess();
     }
     
-    
-
   }
   
-  //remove Answer Prompt popup if wrong and press "Continue" button, enable canPlay
-
-
+  
+  function correctGuess() {
+    $('#submitanswer').hide();
+    let time = (Date.now() - start) / 1000;
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time % 60);
+    let popup = document.createElement("div");
+    popup.id = "result";
+    let title = document.createElement("h1");
+    title.innerHTML = "CORRECT!"
+    let timeText = document.createElement("h3");
+    timeText.innerHTML = "That took you " + minutes + " minutes and " + seconds + " seconds to complete."
+    let info = document.createElement("p");
+    info.innerHTML = "Was that hard? Annoying? Took a long time? Think about how many people navigate websites like this all the time. Imagine how much harder this would be if a site wasn't made with accessibility in mind. Consider that whenever you work on a project in the future."
+    let button = document.createElement("button");
+    button.id = "playagain"
+    button.innerHTML = "Play Again?"
+    popup.appendChild(title);
+    popup.appendChild(timeText);
+    popup.appendChild(info);
+    popup.appendChild(button);
+    document.body.appendChild(popup);
+    document.getElementById("playagain").addEventListener("click", function() {
+      document.getElementById("result").remove();
+      window.location = "../index.html"
+    });
+  }
+  
+  function incorrectGuess() {
+    //remove Answer Prompt popup if wrong and press "Continue" button, enable canPlay
+    $('#submitanswer').hide();
+    let popup = document.createElement("div");
+    popup.id = "result";
+    let title = document.createElement("h1");
+    title.innerHTML = "INCORRECT!"
+    let info = document.createElement("h3");
+    info.innerHTML = "Want to keep trying?"
+    let button = document.createElement("button");
+    button.id = "continuePlaying"
+    button.innerHTML = "Continue"
+    popup.appendChild(title);
+    popup.appendChild(info);
+    popup.appendChild(button);
+    document.body.appendChild(popup);
+    document.getElementById("continuePlaying").addEventListener("click", function() {
+      $('#answerPrompt').show();
+      canPlay = true;
+      document.getElementById("result").remove();
+    });
+  
+  }
  
 });
+
+
 

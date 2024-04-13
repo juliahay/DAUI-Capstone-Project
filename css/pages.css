@@ -62,3 +62,17 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#result {
+    z-index: 10;
+    position: fixed;
+    color: black;
+    background-color: white;
+    border: 5px solid black;
+    text-align: center;
+    padding: 20px;
+    width: 600px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
