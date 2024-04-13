@@ -1,22 +1,17 @@
-// Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
+$(document).ready(function() {
+  document.addEventListener('keydown', function (e) {
+    if (e.code == ' ' || e.code == 'Unidentified' || e.code == 'Space') {
+      var t = $(document.activeElement).text()
+      speechSynthesis.speak(new SpeechSynthesisUtterance(t));
 
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
-
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
+      if (e.target == document.body) {
+        e.preventDefault();
+    }
+  } else if (e.code == 'Tab') {
+    speechSynthesis.cancel();
   }
-}
+  });
 
-// Close the sidebar with the close button
-function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-}
+ 
+});
+

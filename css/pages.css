@@ -2,19 +2,23 @@ table {
     float: right;
     width: 20%;
     height: 100%;
-    background-color: rgb(153, 230,255);
-    color: black;
+    background-color: white;
+    color: white;
     top: 5px;
     border: 1px solid black;
     border-collapse: collapse;
 }
 
 td, tr {
-    border: 1px solid black;
+    border: 1px solid white;
     padding: 3px;
 }
 
 #content {
     display: block;
+}
+
+body {
+    color: white;
 }
 
