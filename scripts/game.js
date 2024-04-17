@@ -26,12 +26,26 @@ $(document).ready(function() {
   document.addEventListener('keydown', function (e) {
     if (e.code == ' ' || e.code == 'Unidentified' || e.code == 'Space') {
       var t = $(document.activeElement).text()
+
       if (canPlay) {
-        speechSynthesis.speak(new SpeechSynthesisUtterance(t));
-      }
-      
-      if (canPlay) {
-        e.preventDefault();
+          e.preventDefault();
+        
+        var tagname = document.activeElement.tagName;
+        console.log(document.activeElement)
+        if (tagname == "IMG") {
+          var alttext = document.activeElement.getAttribute("alt");
+          var srcofimg = document.activeElement.getAttribute("src");
+          if (document.activeElement.alt) {
+              //HREF IS NOT BLANK
+              speechSynthesis.speak(new SpeechSynthesisUtterance(alttext));
+
+          } else {
+              //HREF IS BLANK
+              speechSynthesis.speak(new SpeechSynthesisUtterance(srcofimg));
+          }
+        } else {
+            speechSynthesis.speak(new SpeechSynthesisUtterance(t));
+        }
       }
         
       
